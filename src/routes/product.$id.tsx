@@ -13,10 +13,10 @@ const productQO = (id: string) =>
 const productsQO = queryOptions({ queryKey: ["products"], queryFn: () => getProducts() });
 
 export const Route = createFileRoute("/product/$id")({
-  head: ({ loaderData }) => ({
+  head: () => ({
     meta: [
-      { title: loaderData?.name ? `${loaderData.name} — MY CAR` : "منتج — MY CAR" },
-      { name: "description", content: loaderData?.description ?? "تفاصيل المنتج" },
+      { title: "تفاصيل المنتج — MY CAR" },
+      { name: "description", content: "تفاصيل المنتج وخيارات الطلب." },
     ],
   }),
   loader: async ({ context, params }) => {

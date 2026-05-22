@@ -11,10 +11,10 @@ const serviceQO = (slug: string) =>
   queryOptions({ queryKey: ["service", slug], queryFn: () => getServiceBySlug({ data: { slug } }) });
 
 export const Route = createFileRoute("/services/$slug")({
-  head: ({ loaderData }) => ({
+  head: () => ({
     meta: [
-      { title: loaderData?.name ? `${loaderData.name} — MY CAR` : "خدمة" },
-      { name: "description", content: loaderData?.short_desc ?? "خدمة احترافية" },
+      { title: "خدمة — MY CAR" },
+      { name: "description", content: "تفاصيل الخدمة وحجز سريع." },
     ],
   }),
   loader: async ({ context, params }) => {
