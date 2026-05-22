@@ -41,45 +41,6 @@ export type Database = {
         }
         Relationships: []
       }
-      orders: {
-        Row: {
-          created_at: string
-          customer_address: string | null
-          customer_name: string
-          customer_phone: string
-          id: string
-          items: Json
-          notes: string | null
-          status: string
-          total: number
-          wallet_name: string | null
-        }
-        Insert: {
-          created_at?: string
-          customer_address?: string | null
-          customer_name: string
-          customer_phone: string
-          id?: string
-          items?: Json
-          notes?: string | null
-          status?: string
-          total?: number
-          wallet_name?: string | null
-        }
-        Update: {
-          created_at?: string
-          customer_address?: string | null
-          customer_name?: string
-          customer_phone?: string
-          id?: string
-          items?: Json
-          notes?: string | null
-          status?: string
-          total?: number
-          wallet_name?: string | null
-        }
-        Relationships: []
-      }
       packages: {
         Row: {
           badge: string | null
