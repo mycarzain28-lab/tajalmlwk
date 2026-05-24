@@ -12,10 +12,11 @@ const serviceQO = (slug: string) =>
 
 export const Route = createFileRoute("/services/$slug")({
   head: ({ params, loaderData }) => {
+    const data = loaderData as { name: string; short_desc: string | null; long_desc: string | null; image_url: string | null } | undefined;
     const url = `https://mycaryemen.lovable.app/services/${params.slug}`;
-    const title = loaderData ? `${loaderData.name} — MY CAR` : "خدمة — MY CAR";
-    const desc = (loaderData?.short_desc || loaderData?.long_desc || "تفاصيل الخدمة وحجز سريع.").slice(0, 160);
-    const imgRaw = loaderData?.image_url ? resolveImage(loaderData.image_url) : null;
+    const title = data ? `${data.name} — MY CAR` : "خدمة — MY CAR";
+    const desc = (data?.short_desc || data?.long_desc || "تفاصيل الخدمة وحجز سريع.").slice(0, 160);
+    const imgRaw = data?.image_url ? resolveImage(data.image_url) : null;
     const img = imgRaw
       ? (imgRaw.startsWith("http") ? imgRaw : `https://mycaryemen.lovable.app${imgRaw}`)
       : null;
