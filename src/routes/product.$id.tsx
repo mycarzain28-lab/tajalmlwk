@@ -14,12 +14,26 @@ const productQO = (id: string) =>
 const productsQO = queryOptions({ queryKey: ["products"], queryFn: () => getProducts() });
 
 export const Route = createFileRoute("/product/$id")({
-  head: () => ({
-    meta: [
-      { title: "تفاصيل المنتج — MY CAR" },
-      { name: "description", content: "تفاصيل المنتج وخيارات الطلب." },
-    ],
-  }),
+  head: ({ params, loaderData }) => {
+    const url = `https://mycaryemen.lovable.app/product/${params.id}`;
+    const title = loaderData ? `${loaderData.name} — MY CAR` : "تفاصيل المنتج — MY CAR";
+    const desc = loaderData?.description?.slice(0, 160) || "تفاصيل المنتج وخيارات الطلب.";
+    const imgRaw = loaderData?.images?.[0] ? resolveImage(loaderData.images[0]) : null;
+    const img = imgRaw
+      ? (imgRaw.startsWith("http") ? imgRaw : `https://mycaryemen.lovable.app${imgRaw}`)
+      : null;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: desc },
+        { property: "og:title", content: title },
+        { property: "og:description", content: desc },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "product" },
+        ...(img ? [{ property: "og:image", content: img }, { name: "twitter:image", content: img }] : []),
+      ],
+    };
+  },
   loader: async ({ context, params }) => {
     context.queryClient.ensureQueryData(productsQO);
     const p = await context.queryClient.ensureQueryData(productQO(params.id));

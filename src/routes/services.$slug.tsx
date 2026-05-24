@@ -11,12 +11,26 @@ const serviceQO = (slug: string) =>
   queryOptions({ queryKey: ["service", slug], queryFn: () => getServiceBySlug({ data: { slug } }) });
 
 export const Route = createFileRoute("/services/$slug")({
-  head: () => ({
-    meta: [
-      { title: "خدمة — MY CAR" },
-      { name: "description", content: "تفاصيل الخدمة وحجز سريع." },
-    ],
-  }),
+  head: ({ params, loaderData }) => {
+    const url = `https://mycaryemen.lovable.app/services/${params.slug}`;
+    const title = loaderData ? `${loaderData.name} — MY CAR` : "خدمة — MY CAR";
+    const desc = (loaderData?.short_desc || loaderData?.long_desc || "تفاصيل الخدمة وحجز سريع.").slice(0, 160);
+    const imgRaw = loaderData?.image_url ? resolveImage(loaderData.image_url) : null;
+    const img = imgRaw
+      ? (imgRaw.startsWith("http") ? imgRaw : `https://mycaryemen.lovable.app${imgRaw}`)
+      : null;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: desc },
+        { property: "og:title", content: title },
+        { property: "og:description", content: desc },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
+        ...(img ? [{ property: "og:image", content: img }, { name: "twitter:image", content: img }] : []),
+      ],
+    };
+  },
   loader: async ({ context, params }) => {
     const s = await context.queryClient.ensureQueryData(serviceQO(params.slug));
     if (!s) throw notFound();
