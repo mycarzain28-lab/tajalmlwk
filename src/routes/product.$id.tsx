@@ -129,6 +129,8 @@ function ProductPage() {
           </div>
         </div>
 
+        <ProductReviews productId={product.id} />
+
         {similar.length > 0 && (
           <div className="mt-16">
             <h2 className="text-2xl font-black mb-6">منتجات مشابهة</h2>
@@ -139,6 +141,7 @@ function ProductPage() {
             </div>
           </div>
         )}
+
       </div>
     </Shell>
   );
