@@ -206,6 +206,12 @@ function OrdersPanel() {
                   <option value="delivered">تم التوصيل</option>
                   <option value="cancelled">ملغي</option>
                 </select>
+                {(o.status === "delivered" || o.status === "cancelled") && (
+                  <button onClick={() => onDeleteOrder(o.id)}
+                    className="mt-1 inline-flex items-center gap-1 text-xs text-red-600 hover:underline">
+                    <Trash2 className="w-3 h-3" /> حذف
+                  </button>
+                )}
               </div>
             </div>
             <ul className="text-sm mt-3 space-y-1 border-t border-[var(--color-hairline)] pt-2">
