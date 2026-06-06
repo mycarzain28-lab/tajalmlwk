@@ -157,6 +157,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
 function OrdersPanel() {
   const fetchOrders = useServerFn(listOrders);
   const updateStatus = useServerFn(updateOrderStatus);
+  const removeOrder = useServerFn(deleteOrder);
   const qc = useQueryClient();
   const { data: orders = [], isLoading } = useQuery({
     queryKey: ["admin-orders"],
@@ -167,6 +168,16 @@ function OrdersPanel() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await updateStatus({ data: { password: getPwd(), id, status: status as any } });
     qc.invalidateQueries({ queryKey: ["admin-orders"] });
+  };
+
+  const onDeleteOrder = async (id: string) => {
+    if (!confirm("حذف هذا الطلب نهائياً؟")) return;
+    try {
+      await removeOrder({ data: { password: getPwd(), id } });
+      qc.invalidateQueries({ queryKey: ["admin-orders"] });
+    } catch (err) {
+      alert((err as Error).message);
+    }
   };
 
   if (isLoading) return <Loading />;
