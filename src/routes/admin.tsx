@@ -10,6 +10,7 @@ import {
 import {
   saveProduct, saveCategory, saveService, savePackage, saveWallet, saveContent,
   adminDelete, uploadImage, listOrders, updateOrderStatus, adminLogin,
+  deleteOrder, listAllReviews, deleteReview,
 } from "@/lib/admin.functions";
 
 // Session token issued by the server-side `adminLogin` function. The actual
