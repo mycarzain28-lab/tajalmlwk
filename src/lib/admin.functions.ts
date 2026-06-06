@@ -61,14 +61,21 @@ export const adminLogin = createServerFn({ method: "POST" })
     z.object({ password: z.string().min(1).max(200) }).parse(d),
   )
   .handler(async ({ data }) => {
-    const expected = getAdminPassword();
+    const candidates = [getAdminPassword(), process.env.ADMIN_PASSWORD_2].filter(
+      (p): p is string => typeof p === "string" && p.length > 0,
+    );
     const a = Buffer.from(data.password);
-    const b = Buffer.from(expected);
-    // Constant-time compare (pad to avoid length leak)
-    const maxLen = Math.max(a.length, b.length);
-    const ap = Buffer.concat([a, Buffer.alloc(maxLen - a.length)]);
-    const bp = Buffer.concat([b, Buffer.alloc(maxLen - b.length)]);
-    if (a.length !== b.length || !timingSafeEqual(ap, bp)) {
+    let matched = false;
+    for (const expected of candidates) {
+      const b = Buffer.from(expected);
+      const maxLen = Math.max(a.length, b.length);
+      const ap = Buffer.concat([a, Buffer.alloc(maxLen - a.length)]);
+      const bp = Buffer.concat([b, Buffer.alloc(maxLen - b.length)]);
+      // Always run timingSafeEqual to keep timing uniform across candidates.
+      const eq = a.length === b.length && timingSafeEqual(ap, bp);
+      if (eq) matched = true;
+    }
+    if (!matched) {
       throw new Error("كلمة المرور غير صحيحة");
     }
     const token = signToken({ exp: Date.now() + SESSION_TTL_MS });
