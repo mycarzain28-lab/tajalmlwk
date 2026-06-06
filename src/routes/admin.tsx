@@ -22,7 +22,7 @@ export const Route = createFileRoute("/admin")({
   component: AdminPage,
 });
 
-type Tab = "orders" | "products" | "categories" | "services" | "packages" | "wallets" | "content";
+type Tab = "orders" | "products" | "categories" | "services" | "packages" | "wallets" | "content" | "reviews";
 
 function AdminPage() {
   const login = useServerFn(adminLogin);
