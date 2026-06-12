@@ -96,6 +96,11 @@ function HomePage() {
         </div>
       </section>
 
+      {/* FEATURED PRODUCTS SLIDER */}
+      <FeaturedSlider products={featured} />
+
+
+
       {/* HOT DEALS */}
       <section className="max-w-7xl mx-auto px-4 py-8">
         <SectionTitle title="🔥 العروض المميزة" subtitle="بكجات حصرية لفترة محدودة" />
