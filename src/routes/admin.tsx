@@ -18,7 +18,7 @@ import {
 const TOKEN_KEY = "mycar_admin_token";
 
 export const Route = createFileRoute("/admin")({
-  head: () => ({ meta: [{ title: "لوحة التحكم — MY CAR" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "لوحة التحكم — تاج الملوك" }, { name: "robots", content: "noindex" }] }),
   component: AdminPage,
 });
 
@@ -117,7 +117,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
             <h1 className="text-2xl md:text-3xl font-black">لوحة التحكم</h1>
-            <p className="text-sm text-[var(--color-ink-soft)]">مرحباً احمد النود</p>
+            <p className="text-sm text-[var(--color-ink-soft)]">مرحباً الزبير</p>
           </div>
           <button onClick={onLogout} className="btn-outline"><LogOut className="w-4 h-4" /> خروج</button>
         </div>

@@ -10,11 +10,11 @@ const packagesQO = queryOptions({ queryKey: ["packages"], queryFn: () => getPack
 export const Route = createFileRoute("/offers")({
   head: () => ({
     meta: [
-      { title: "العروض — MY CAR" },
-      { name: "description", content: "بكجات وعروض حصرية على خدمات ومنتجات MY CAR — استفد قبل انتهاء العرض." },
-      { property: "og:title", content: "العروض — MY CAR" },
-      { property: "og:description", content: "بكجات وعروض حصرية على خدمات ومنتجات MY CAR — استفد قبل انتهاء العرض." },
-      { property: "og:url", content: "https://mycaryemen.lovable.app/offers" },
+      { title: "العروض — تاج الملوك" },
+      { name: "description", content: "بكجات وعروض حصرية على خدمات ومنتجات تاج الملوك — استفد قبل انتهاء العرض." },
+      { property: "og:title", content: "العروض — تاج الملوك" },
+      { property: "og:description", content: "بكجات وعروض حصرية على خدمات ومنتجات تاج الملوك — استفد قبل انتهاء العرض." },
+      { property: "og:url", content: "https://tajalmoluk.lovable.app/offers" },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -58,7 +58,7 @@ function OffersPage() {
         <div className="mt-12">
           <h2 className="text-2xl font-black">كوبونات الخصم</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <Coupon code="MYCAR10" desc="خصم 10% على جميع المنتجات" />
+            <Coupon code="TAJ10" desc="خصم 10% على جميع المنتجات" />
             <Coupon code="VIP20" desc="خصم 20% على بكج VIP" />
           </div>
         </div>

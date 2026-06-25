@@ -5,11 +5,11 @@ import { Target, Heart, Users } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "من نحن — MY CAR" },
-      { name: "description", content: "ماي كار - مركز متكامل للعناية بالسيارات في صنعاء يقدم خدمات احترافية وقطع وإكسسوارات أصلية." },
-      { property: "og:title", content: "من نحن — MY CAR" },
-      { property: "og:description", content: "ماي كار - مركز متكامل للعناية بالسيارات في صنعاء يقدم خدمات احترافية وقطع وإكسسوارات أصلية." },
-      { property: "og:url", content: "https://mycaryemen.lovable.app/about" },
+      { title: "من نحن — تاج الملوك" },
+      { name: "description", content: "تاج الملوك - مركز متكامل للعناية بالسيارات في صنعاء يقدم خدمات احترافية وقطع وإكسسوارات أصلية." },
+      { property: "og:title", content: "من نحن — تاج الملوك" },
+      { property: "og:description", content: "تاج الملوك - مركز متكامل للعناية بالسيارات في صنعاء يقدم خدمات احترافية وقطع وإكسسوارات أصلية." },
+      { property: "og:url", content: "https://tajalmoluk.lovable.app/about" },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -22,7 +22,7 @@ function AboutPage() {
       <div className="max-w-4xl mx-auto px-4 py-10">
         <h1 className="text-3xl md:text-4xl font-black">من نحن</h1>
         <p className="text-[var(--color-ink-soft)] mt-4 leading-loose">
-          <span className="font-bold text-[var(--color-gold)]">MY CAR</span> هو مركز متكامل للعناية بالسيارات في صنعاء، نقدّم تجربة فاخرة تجمع بين متجر إلكتروني واسع وخدمات احترافية تنفذها أيدي خبراء. هدفنا أن تحصل سيارتك على أفضل العناية في مكان واحد، بجودة عالمية وأسعار تنافسية.
+          <span className="font-bold text-[var(--color-gold)]">تاج الملوك</span> للعناية وزينة السيارات — وجهتك الملكية في صنعاء لتجربة فاخرة تجمع بين متجر إلكتروني واسع وخدمات احترافية تنفذها أيدي خبراء. هدفنا أن تحصل سيارتك على أفضل العناية في مكان واحد، بجودة عالمية وأسعار تنافسية.
         </p>
         <p className="text-[var(--color-ink-soft)] mt-4 leading-loose">
           من حماية الطلاء بأفلام PPF والنانو سيراميك، إلى التنجيد الفاخر، وتطوير الكشافات، والسمكرة والرش، وقطع الغيار الأصلية، والاكسسوارات المميزة — كل ذلك تحت سقف واحد.
@@ -32,7 +32,7 @@ function AboutPage() {
           {[
             { Icon: Target, t: "رسالتنا", d: "تقديم خدمة استثنائية تضع سيارتك في أيدٍ موثوقة." },
             { Icon: Heart, t: "قيمنا", d: "الجودة، الأمانة، والاحترافية في كل تفصيل." },
-            { Icon: Users, t: "فريقنا", d: "بقيادة المدير العام احمد النود — فنيون معتمدون." },
+            { Icon: Users, t: "فريقنا", d: "بقيادة المدير العام الزبير — فنيون معتمدون." },
           ].map(({ Icon, t, d }) => (
             <div key={t} className="card-clean p-5">
               <Icon className="w-7 h-7 text-[var(--color-gold)]" />
