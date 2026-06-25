@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, MessageCircle, MapPin, Clock, Mail, Facebook, Instagram } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Clock, Instagram } from "lucide-react";
 
 import { SALES_PHONE, WHATSAPP_NUMBER, DEV_PHONE, whatsappLink } from "@/lib/whatsapp";
+import logoAsset from "@/assets/logo-tajalmoluk.png.asset.json";
 
 const wallets = [
   "جيب",
@@ -18,9 +19,9 @@ export function Footer() {
     <footer className="bg-white border-t border-[var(--color-hairline)] mt-16">
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
-          <div className="text-2xl font-black text-[var(--color-gold)] tracking-wider">تاج الملوك</div>
-          <p className="text-sm text-[var(--color-ink-soft)] mt-2 leading-relaxed">
-            مركز متكامل للعناية بالسيارات في صنعاء — متجر وخدمات احترافية بجودة عالمية.
+          <img src={logoAsset.url} alt="تاج الملوك" className="h-16 w-auto object-contain" />
+          <p className="text-sm text-[var(--color-ink-soft)] mt-3 leading-relaxed">
+            تاج الملوك للعناية وزينة السيارات — جودة ملكية وخدمة احترافية في صنعاء.
           </p>
           <p className="text-xs text-[var(--color-ink-soft)] mt-3">
             المدير العام: <span className="font-semibold text-[var(--color-ink)]">الزبير</span>
@@ -40,15 +41,6 @@ export function Footer() {
           </ul>
           <div className="flex items-center gap-3 mt-5">
             <a
-              href="https://www.facebook.com/profile.php?id=61557758404308"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="فيسبوك"
-              className="w-9 h-9 rounded-full bg-[var(--color-surface)] border border-[var(--color-hairline)] flex items-center justify-center hover:bg-[var(--color-gold)] hover:text-white transition-colors"
-            >
-              <Facebook className="w-4 h-4" />
-            </a>
-            <a
               href="https://www.instagram.com/al_zubair_20?igsh=MXVwczN3eXliN2p6Yw=="
               target="_blank"
               rel="noopener noreferrer"
@@ -66,8 +58,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-[var(--color-ink-soft)]">
             <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-[var(--color-gold)]" /> <a href={`tel:${SALES_PHONE}`}>{SALES_PHONE}</a></li>
             <li className="flex items-center gap-2"><MessageCircle className="w-4 h-4 text-[var(--color-gold)]" /> <a href={whatsappLink("مرحباً")}>{WHATSAPP_NUMBER.replace("967","")}</a></li>
-            <li className="flex items-center gap-2"><Mail className="w-4 h-4 text-[var(--color-gold)]" /> info@tajalmoluk.ye</li>
-            <li className="flex items-start gap-2"><MapPin className="w-4 h-4 text-[var(--color-gold)] mt-0.5" /> صنعاء - حدة - شارع صفر - جوار مستشفى إسراء</li>
+            <li className="flex items-start gap-2"><MapPin className="w-4 h-4 text-[var(--color-gold)] mt-0.5" /> صنعاء - شارع 22 مايو - جوار فندق الأحلام - قبل جولة الثقافة</li>
             <li className="flex items-start gap-2"><Clock className="w-4 h-4 text-[var(--color-gold)] mt-0.5" /> السبت - الخميس: 9 ص - 11 م | الجمعة إجازة</li>
           </ul>
         </div>

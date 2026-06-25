@@ -3,6 +3,7 @@ import { Search, Heart, User, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
 import { ThemeToggle } from "./ThemeToggle";
+import logoAsset from "@/assets/logo-tajalmoluk.png.asset.json";
 
 export function Header() {
   const { count } = useCart();
@@ -19,13 +20,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full bg-white border-b border-[var(--color-hairline)]">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
-        <Link to="/" className="flex flex-col items-start leading-tight shrink-0">
-          <span className="text-2xl md:text-3xl font-black tracking-wider text-[var(--color-gold)]">
-            تاج الملوك
-          </span>
-          <span className="text-[10px] md:text-xs text-[var(--color-ink-soft)] -mt-0.5">
-            مركز متكامل للعناية بالسيارات
-          </span>
+        <Link to="/" className="flex items-center gap-2 shrink-0" aria-label="تاج الملوك">
+          <img src={logoAsset.url} alt="تاج الملوك لزينة السيارات" className="h-12 md:h-14 w-auto object-contain" />
         </Link>
 
         <div className="flex-1 hidden md:flex">

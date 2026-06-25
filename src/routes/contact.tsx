@@ -8,9 +8,9 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "اتصل بنا — تاج الملوك" },
-      { name: "description", content: "تواصل مع تاج الملوك في صنعاء - حدة - شارع صفر - جوار مستشفى إسراء. أوقات العمل السبت-الخميس 9ص-11م." },
+      { name: "description", content: "تواصل مع تاج الملوك للعناية وزينة السيارات — صنعاء، شارع 22 مايو، جوار فندق الأحلام، قبل جولة الثقافة." },
       { property: "og:title", content: "اتصل بنا — تاج الملوك" },
-      { property: "og:description", content: "تواصل مع تاج الملوك في صنعاء - حدة - شارع صفر - جوار مستشفى إسراء. أوقات العمل السبت-الخميس 9ص-11م." },
+      { property: "og:description", content: "تواصل مع تاج الملوك للعناية وزينة السيارات — صنعاء، شارع 22 مايو، جوار فندق الأحلام، قبل جولة الثقافة." },
       { property: "og:url", content: "https://tajalmoluk.lovable.app/contact" },
       { property: "og:type", content: "website" },
     ],
@@ -44,7 +44,7 @@ function ContactPage() {
               <a href={whatsappLink("مرحباً")} className="hover:text-[var(--color-gold)]">{WHATSAPP_NUMBER.replace("967","")}</a>
             </InfoRow>
             <InfoRow Icon={MapPin} title="العنوان">
-              صنعاء - حدة - شارع صفر - جوار مستشفى إسراء
+              صنعاء - شارع 22 مايو - جوار فندق الأحلام - قبل جولة الثقافة
             </InfoRow>
             <InfoRow Icon={Clock} title="أوقات العمل">
               السبت - الخميس: 9 صباحاً - 11 مساءً<br />الجمعة: إجازة
