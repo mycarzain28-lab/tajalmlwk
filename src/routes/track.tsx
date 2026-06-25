@@ -8,11 +8,11 @@ import { getOrdersByPhone } from "@/lib/catalog.functions";
 export const Route = createFileRoute("/track")({
   head: () => ({
     meta: [
-      { title: "تتبع الطلب — MY CAR" },
+      { title: "تتبع الطلب — تاج الملوك" },
       { name: "description", content: "تتبع حالة طلبك عبر رقم الهاتف." },
-      { property: "og:title", content: "تتبع الطلب — MY CAR" },
+      { property: "og:title", content: "تتبع الطلب — تاج الملوك" },
       { property: "og:description", content: "تتبع حالة طلبك عبر رقم الهاتف." },
-      { property: "og:url", content: "https://mycaryemen.lovable.app/track" },
+      { property: "og:url", content: "https://tajalmoluk.lovable.app/track" },
     ],
   }),
   component: TrackPage,

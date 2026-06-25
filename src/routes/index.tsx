@@ -22,11 +22,11 @@ const featuredQO = queryOptions({ queryKey: ["featured-products"], queryFn: () =
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "MY CAR — مركز متكامل للعناية بالسيارات" },
+      { title: "تاج الملوك — مركز متكامل للعناية بالسيارات" },
       { name: "description", content: "متجر إلكتروني وخدمات احترافية للسيارات: PPF، نانو سيراميك، اكسسوارات، منظفات وعطور." },
-      { property: "og:title", content: "MY CAR — مركز متكامل للعناية بالسيارات" },
+      { property: "og:title", content: "تاج الملوك — مركز متكامل للعناية بالسيارات" },
       { property: "og:description", content: "متجر إلكتروني وخدمات احترافية للسيارات: PPF، نانو سيراميك، اكسسوارات، منظفات وعطور." },
-      { property: "og:url", content: "https://mycaryemen.lovable.app/" },
+      { property: "og:url", content: "https://tajalmoluk.lovable.app/" },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -59,7 +59,7 @@ function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" />
         <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-32 text-center text-white">
           <h1 className="text-5xl md:text-7xl font-black tracking-wider text-[var(--color-gold)] drop-shadow-lg">
-            MY CAR
+            تاج الملوك
           </h1>
           <p className="mt-3 text-base md:text-2xl font-semibold">مركز متكامل للعناية بالسيارات</p>
           <p className="mt-2 text-sm md:text-base text-gray-200 max-w-xl mx-auto">

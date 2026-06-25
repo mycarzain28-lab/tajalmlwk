@@ -21,7 +21,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
         <Link to="/" className="flex flex-col items-start leading-tight shrink-0">
           <span className="text-2xl md:text-3xl font-black tracking-wider text-[var(--color-gold)]">
-            MY CAR
+            تاج الملوك
           </span>
           <span className="text-[10px] md:text-xs text-[var(--color-ink-soft)] -mt-0.5">
             مركز متكامل للعناية بالسيارات

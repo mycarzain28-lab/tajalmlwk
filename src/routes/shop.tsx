@@ -14,11 +14,11 @@ const searchSchema = z.object({ cat: z.string().optional(), q: z.string().option
 export const Route = createFileRoute("/shop")({
   head: () => ({
     meta: [
-      { title: "المتجر — MY CAR" },
+      { title: "المتجر — تاج الملوك" },
       { name: "description", content: "تسوق منتجات العناية والاكسسوارات والكهربائيات لسيارتك بأفضل الأسعار." },
-      { property: "og:title", content: "المتجر — MY CAR" },
+      { property: "og:title", content: "المتجر — تاج الملوك" },
       { property: "og:description", content: "تسوق منتجات العناية والاكسسوارات والكهربائيات لسيارتك بأفضل الأسعار." },
-      { property: "og:url", content: "https://mycaryemen.lovable.app/shop" },
+      { property: "og:url", content: "https://tajalmoluk.lovable.app/shop" },
       { property: "og:type", content: "website" },
     ],
   }),

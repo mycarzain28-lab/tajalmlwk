@@ -18,12 +18,12 @@ export function Footer() {
     <footer className="bg-white border-t border-[var(--color-hairline)] mt-16">
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
-          <div className="text-2xl font-black text-[var(--color-gold)] tracking-wider">MY CAR</div>
+          <div className="text-2xl font-black text-[var(--color-gold)] tracking-wider">تاج الملوك</div>
           <p className="text-sm text-[var(--color-ink-soft)] mt-2 leading-relaxed">
             مركز متكامل للعناية بالسيارات في صنعاء — متجر وخدمات احترافية بجودة عالمية.
           </p>
           <p className="text-xs text-[var(--color-ink-soft)] mt-3">
-            المدير العام: <span className="font-semibold text-[var(--color-ink)]">احمد النود</span>
+            المدير العام: <span className="font-semibold text-[var(--color-ink)]">الزبير</span>
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export function Footer() {
               <Facebook className="w-4 h-4" />
             </a>
             <a
-              href="https://www.instagram.com/my_car_decoration?igsh=MW9xbmpmNTJpNWV4ZA=="
+              href="https://www.instagram.com/al_zubair_20?igsh=MXVwczN3eXliN2p6Yw=="
               target="_blank"
               rel="noopener noreferrer"
               aria-label="إنستغرام"
@@ -66,7 +66,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-[var(--color-ink-soft)]">
             <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-[var(--color-gold)]" /> <a href={`tel:${SALES_PHONE}`}>{SALES_PHONE}</a></li>
             <li className="flex items-center gap-2"><MessageCircle className="w-4 h-4 text-[var(--color-gold)]" /> <a href={whatsappLink("مرحباً")}>{WHATSAPP_NUMBER.replace("967","")}</a></li>
-            <li className="flex items-center gap-2"><Mail className="w-4 h-4 text-[var(--color-gold)]" /> info@mycar.ye</li>
+            <li className="flex items-center gap-2"><Mail className="w-4 h-4 text-[var(--color-gold)]" /> info@tajalmoluk.ye</li>
             <li className="flex items-start gap-2"><MapPin className="w-4 h-4 text-[var(--color-gold)] mt-0.5" /> صنعاء - حدة - شارع صفر - جوار مستشفى إسراء</li>
             <li className="flex items-start gap-2"><Clock className="w-4 h-4 text-[var(--color-gold)] mt-0.5" /> السبت - الخميس: 9 ص - 11 م | الجمعة إجازة</li>
           </ul>
@@ -86,7 +86,7 @@ export function Footer() {
 
       <div className="border-t border-[var(--color-hairline)]">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row gap-2 justify-between items-center text-xs text-[var(--color-ink-soft)]">
-          <p>© {new Date().getFullYear()} MY CAR — جميع الحقوق محفوظة</p>
+          <p>© {new Date().getFullYear()} تاج الملوك — جميع الحقوق محفوظة</p>
           <p>
             تطوير: <a href={`tel:${DEV_PHONE}`} className="text-[var(--color-gold)] font-semibold">صديق الزين {DEV_PHONE}</a>
           </p>

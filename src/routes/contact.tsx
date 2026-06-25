@@ -7,11 +7,11 @@ import { SALES_PHONE, WHATSAPP_NUMBER, whatsappLink } from "@/lib/whatsapp";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "اتصل بنا — MY CAR" },
-      { name: "description", content: "تواصل مع ماي كار في صنعاء - حدة - شارع صفر - جوار مستشفى إسراء. أوقات العمل السبت-الخميس 9ص-11م." },
-      { property: "og:title", content: "اتصل بنا — MY CAR" },
-      { property: "og:description", content: "تواصل مع ماي كار في صنعاء - حدة - شارع صفر - جوار مستشفى إسراء. أوقات العمل السبت-الخميس 9ص-11م." },
-      { property: "og:url", content: "https://mycaryemen.lovable.app/contact" },
+      { title: "اتصل بنا — تاج الملوك" },
+      { name: "description", content: "تواصل مع تاج الملوك في صنعاء - حدة - شارع صفر - جوار مستشفى إسراء. أوقات العمل السبت-الخميس 9ص-11م." },
+      { property: "og:title", content: "اتصل بنا — تاج الملوك" },
+      { property: "og:description", content: "تواصل مع تاج الملوك في صنعاء - حدة - شارع صفر - جوار مستشفى إسراء. أوقات العمل السبت-الخميس 9ص-11م." },
+      { property: "og:url", content: "https://tajalmoluk.lovable.app/contact" },
       { property: "og:type", content: "website" },
     ],
   }),

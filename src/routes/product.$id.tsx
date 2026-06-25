@@ -18,12 +18,12 @@ const productsQO = queryOptions({ queryKey: ["products"], queryFn: () => getProd
 export const Route = createFileRoute("/product/$id")({
   head: ({ params, loaderData }) => {
     const data = loaderData as { name: string; description: string | null; images: string[] } | undefined;
-    const url = `https://mycaryemen.lovable.app/product/${params.id}`;
-    const title = data ? `${data.name} — MY CAR` : "تفاصيل المنتج — MY CAR";
+    const url = `https://tajalmoluk.lovable.app/product/${params.id}`;
+    const title = data ? `${data.name} — تاج الملوك` : "تفاصيل المنتج — تاج الملوك";
     const desc = data?.description?.slice(0, 160) || "تفاصيل المنتج وخيارات الطلب.";
     const imgRaw = data?.images?.[0] ? resolveImage(data.images[0]) : null;
     const img = imgRaw
-      ? (imgRaw.startsWith("http") ? imgRaw : `https://mycaryemen.lovable.app${imgRaw}`)
+      ? (imgRaw.startsWith("http") ? imgRaw : `https://tajalmoluk.lovable.app${imgRaw}`)
       : null;
     return {
       meta: [
