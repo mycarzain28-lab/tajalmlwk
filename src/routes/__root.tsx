@@ -62,8 +62,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:title", content: "تاج الملوك — مركز متكامل للعناية بالسيارات" },
       { name: "twitter:description", content: "تاج الملوك -مركز و متجر وخدمات متكاملة للعناية بالسيارات في صنعاء. PPF، نانو سيراميك، تنجيد، اكسسوارات، ومنتجات فاخرة." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/d709b619-a7d5-407b-9d94-37851754919f" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/d709b619-a7d5-407b-9d94-37851754919f" },
+      { property: "og:image", content: "https://tajalmoluk.lovable.app/__l5e/assets-v1/f7f87699-eed0-4ee2-85e0-ac775ddf75d5/logo-tajalmoluk.png" },
+      { name: "twitter:image", content: "https://tajalmoluk.lovable.app/__l5e/assets-v1/f7f87699-eed0-4ee2-85e0-ac775ddf75d5/logo-tajalmoluk.png" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
