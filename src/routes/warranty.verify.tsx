@@ -37,7 +37,7 @@ function VerifyPage() {
     try {
       // Public verify: RLS on warranties requires auth; but we exposed a safe RPC path via a view? 
       // Instead, use edge-safe direct query filtered by warranty_number is blocked. Use RPC below.
-      const { data, error } = await supabase.rpc("verify_warranty_public" as never, { _num: v });
+      const { data, error } = await (supabase.rpc as unknown as (name: string, params: Record<string, unknown>) => Promise<{ data: unknown; error: { message: string } | null }>)("verify_warranty_public", { _num: v });
       if (error) throw error;
       const rows = (data as unknown as Result[] | null) ?? [];
       const row = rows[0];
