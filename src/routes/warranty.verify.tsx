@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { verifyWarranty } from "@/lib/warranty-public.functions";
 import { statusLabel, statusColor, formatDateAr, computeStatus, type WarrantyStatus } from "@/lib/warranty-utils";
 import { Search, ShieldCheck, ShieldX, Loader2 } from "lucide-react";
 
