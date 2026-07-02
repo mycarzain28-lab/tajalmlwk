@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { verifyWarranty } from "@/lib/warranty-public.functions";
 import { statusLabel, statusColor, formatDateAr, computeStatus, type WarrantyStatus } from "@/lib/warranty-utils";
 import { Search, ShieldCheck, ShieldX, Loader2 } from "lucide-react";
 
@@ -35,12 +35,8 @@ function VerifyPage() {
     if (!v) return;
     setBusy(true); setError(null); setResult(null); setNotFound(false);
     try {
-      // Public verify: RLS on warranties requires auth; but we exposed a safe RPC path via a view? 
-      // Instead, use edge-safe direct query filtered by warranty_number is blocked. Use RPC below.
-      const { data, error } = await (supabase.rpc as unknown as (name: string, params: Record<string, unknown>) => Promise<{ data: unknown; error: { message: string } | null }>)("verify_warranty_public", { _num: v });
-      if (error) throw error;
-      const rows = (data as unknown as Result[] | null) ?? [];
-      const row = rows[0];
+      const rows = (await verifyWarranty({ data: { num: v } })) as unknown as Result[];
+      const row = rows?.[0];
       if (!row) { setNotFound(true); return; }
       setResult({ ...row, status: computeStatus(row.expiry_date, row.status) });
     } catch (e) {
