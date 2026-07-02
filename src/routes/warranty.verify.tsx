@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { verifyWarranty } from "@/lib/warranty-public.functions";
 import { statusLabel, statusColor, formatDateAr, computeStatus, type WarrantyStatus } from "@/lib/warranty-utils";
 import { Search, ShieldCheck, ShieldX, Loader2 } from "lucide-react";
@@ -24,6 +25,7 @@ type Result = {
 function VerifyPage() {
   const initial = typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("n") ?? "" : "";
   const [num, setNum] = useState(initial);
+  const verify = useServerFn(verifyWarranty);
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,13 +37,15 @@ function VerifyPage() {
     if (!v) return;
     setBusy(true); setError(null); setResult(null); setNotFound(false);
     try {
-      const rows = (await verifyWarranty({ data: { num: v } })) as unknown as Result[];
-      const row = rows?.[0];
+      const rows = (await verify({ data: { num: v } })) as unknown as Result[];
+      const row = Array.isArray(rows) ? rows[0] : null;
       if (!row) { setNotFound(true); return; }
       setResult({ ...row, status: computeStatus(row.expiry_date, row.status) });
     } catch (e) {
-      setError(e instanceof Error ? e.message : "حدث خطأ");
-    } finally { setBusy(false); }
+      setError(e instanceof Error ? e.message : "حدث خطأ، الرجاء المحاولة لاحقاً");
+    } finally {
+      setBusy(false);
+    }
   }
 
   useEffect(() => { if (initial) doSearch(initial); /* eslint-disable-next-line */ }, []);
