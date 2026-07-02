@@ -1,0 +1,1 @@
+ALTER TABLE public.warranties ALTER COLUMN status SET DEFAULT 'pending'::public.warranty_status;

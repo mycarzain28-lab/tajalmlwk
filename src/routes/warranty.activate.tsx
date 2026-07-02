@@ -90,10 +90,10 @@ function ActivatePage() {
         branch_id: branchId || null,
         activation_date: activationDate,
         expiry_date: exp.toISOString().slice(0, 10),
-        status: "active",
+        // status omitted → DB default 'pending' (بانتظار موافقة المسؤول)
       });
       if (error) throw error;
-      setMsg({ t: "ok", m: `تم تفعيل الضمان: ${num}` });
+      setMsg({ t: "ok", m: `تم تسجيل الضمان: ${num} — بانتظار موافقة المسؤول` });
       setTimeout(() => navigate({ to: "/warranty/dashboard" }), 1000);
     } catch (e) {
       setMsg({ t: "err", m: e instanceof Error ? e.message : "حدث خطأ" });
