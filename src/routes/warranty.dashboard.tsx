@@ -67,7 +67,7 @@ function DashboardPage() {
 
       {err && <div className="p-3 rounded-lg bg-red-50 text-red-700 border border-red-200 text-sm">{err}</div>}
 
-      {rows.length === 0 ? (
+      {!rows || rows.length === 0 ? (
         <div className="text-center py-16 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">
           <ShieldCheck className="w-16 h-16 mx-auto text-slate-300 mb-3" />
           <h3 className="text-lg font-bold">لا توجد ضمانات بعد</h3>
