@@ -185,6 +185,7 @@ function WarrantiesTab() {
         </div>
         <select value={filter} onChange={(e) => setFilter(e.target.value as never)} className="px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800">
           <option value="all">كل الحالات</option>
+          <option value="pending">بانتظار الموافقة</option>
           <option value="active">سارية</option>
           <option value="expired">منتهية</option>
           <option value="cancelled">ملغية</option>
