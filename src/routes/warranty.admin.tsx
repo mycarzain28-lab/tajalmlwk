@@ -152,6 +152,11 @@ function WarrantiesTab() {
     });
   }, [rows, q, filter]);
 
+  async function approve(id: string) {
+    if (!confirm("الموافقة على الضمان وتفعيله؟")) return;
+    const err = await mutFn({ data: { op: "warranty_approve", id } });
+    if (err) alert(err); else load();
+  }
   async function cancel(id: string) {
     if (!confirm("إلغاء الضمان؟")) return;
     const err = await mutFn({ data: { op: "warranty_cancel", id } });
