@@ -219,6 +219,9 @@ function WarrantiesTab() {
                     <td className="p-2 text-xs">{formatDateAr(r.expiry_date)}</td>
                     <td className="p-2"><span className={`text-xs px-2 py-0.5 rounded-full border ${statusColor[s]}`}>{statusLabel[s]}</span></td>
                     <td className="p-2 whitespace-nowrap">
+                      {s === "pending" && (
+                        <button onClick={() => approve(r.id)} className="p-1 hover:bg-green-50 rounded" title="موافقة وتفعيل"><CheckCircle2 className="w-4 h-4 text-green-600" /></button>
+                      )}
                       <button onClick={() => extend(r.id, r.expiry_date)} className="p-1 hover:bg-slate-100 rounded" title="تمديد"><RefreshCw className="w-4 h-4 text-blue-600" /></button>
                       <button onClick={() => cancel(r.id)} className="p-1 hover:bg-slate-100 rounded" title="إلغاء"><Ban className="w-4 h-4 text-orange-600" /></button>
                       <button onClick={() => remove(r.id)} className="p-1 hover:bg-slate-100 rounded" title="حذف"><Trash2 className="w-4 h-4 text-red-600" /></button>
