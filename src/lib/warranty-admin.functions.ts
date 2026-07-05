@@ -93,6 +93,8 @@ export const adminMutate = createServerFn({ method: "POST" })
     const allowedTables = ["warranty_brands", "film_types", "branches"] as const;
 
     switch (data.op) {
+      case "warranty_approve":
+        return (await supabaseAdmin.from("warranties").update({ status: "active" }).eq("id", data.id)).error?.message ?? null;
       case "warranty_cancel":
         return (await supabaseAdmin.from("warranties").update({ status: "cancelled" }).eq("id", data.id)).error?.message ?? null;
       case "warranty_extend":
