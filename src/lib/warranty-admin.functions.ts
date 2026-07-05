@@ -72,6 +72,7 @@ export const adminListSimple = createServerFn({ method: "POST" })
   });
 
 type MutOp =
+  | { op: "warranty_approve"; id: string }
   | { op: "warranty_cancel"; id: string }
   | { op: "warranty_extend"; id: string; expiry_date: string }
   | { op: "warranty_delete"; id: string }
