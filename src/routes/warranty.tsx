@@ -1,7 +1,7 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { WarrantyAuthProvider, useWarrantyAuth } from "@/lib/warranty-auth";
 import logoAsset from "@/assets/logo-tajalmoluk.png.asset.json";
-import { LogOut, ShieldCheck, LayoutDashboard, PlusCircle, Search, Home } from "lucide-react";
+import { LogOut, ShieldCheck, LayoutDashboard, PlusCircle, Search, Home, Car } from "lucide-react";
 
 export const Route = createFileRoute("/warranty")({
   component: WarrantyLayout,
