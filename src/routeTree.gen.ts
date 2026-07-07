@@ -26,6 +26,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as WarrantyIndexRouteImport } from './routes/warranty.index'
 import { Route as WarrantyVerifyRouteImport } from './routes/warranty.verify'
 import { Route as WarrantyDashboardRouteImport } from './routes/warranty.dashboard'
+import { Route as WarrantyCarsRouteImport } from './routes/warranty.cars'
 import { Route as WarrantyAuthRouteImport } from './routes/warranty.auth'
 import { Route as WarrantyAdminRouteImport } from './routes/warranty.admin'
 import { Route as WarrantyActivateRouteImport } from './routes/warranty.activate'
@@ -121,6 +122,11 @@ const WarrantyDashboardRoute = WarrantyDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => WarrantyRoute,
 } as any)
+const WarrantyCarsRoute = WarrantyCarsRouteImport.update({
+  id: '/cars',
+  path: '/cars',
+  getParentRoute: () => WarrantyRoute,
+} as any)
 const WarrantyAuthRoute = WarrantyAuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -192,6 +198,7 @@ export interface FileRoutesByFullPath {
   '/warranty/activate': typeof WarrantyActivateRoute
   '/warranty/admin': typeof WarrantyAdminRoute
   '/warranty/auth': typeof WarrantyAuthRoute
+  '/warranty/cars': typeof WarrantyCarsRoute
   '/warranty/dashboard': typeof WarrantyDashboardRoute
   '/warranty/verify': typeof WarrantyVerifyRoute
   '/warranty/': typeof WarrantyIndexRoute
@@ -219,6 +226,7 @@ export interface FileRoutesByTo {
   '/warranty/activate': typeof WarrantyActivateRoute
   '/warranty/admin': typeof WarrantyAdminRoute
   '/warranty/auth': typeof WarrantyAuthRoute
+  '/warranty/cars': typeof WarrantyCarsRoute
   '/warranty/dashboard': typeof WarrantyDashboardRoute
   '/warranty/verify': typeof WarrantyVerifyRoute
   '/warranty': typeof WarrantyIndexRoute
@@ -248,6 +256,7 @@ export interface FileRoutesById {
   '/warranty/activate': typeof WarrantyActivateRoute
   '/warranty/admin': typeof WarrantyAdminRoute
   '/warranty/auth': typeof WarrantyAuthRoute
+  '/warranty/cars': typeof WarrantyCarsRoute
   '/warranty/dashboard': typeof WarrantyDashboardRoute
   '/warranty/verify': typeof WarrantyVerifyRoute
   '/warranty/': typeof WarrantyIndexRoute
@@ -278,6 +287,7 @@ export interface FileRouteTypes {
     | '/warranty/activate'
     | '/warranty/admin'
     | '/warranty/auth'
+    | '/warranty/cars'
     | '/warranty/dashboard'
     | '/warranty/verify'
     | '/warranty/'
@@ -305,6 +315,7 @@ export interface FileRouteTypes {
     | '/warranty/activate'
     | '/warranty/admin'
     | '/warranty/auth'
+    | '/warranty/cars'
     | '/warranty/dashboard'
     | '/warranty/verify'
     | '/warranty'
@@ -333,6 +344,7 @@ export interface FileRouteTypes {
     | '/warranty/activate'
     | '/warranty/admin'
     | '/warranty/auth'
+    | '/warranty/cars'
     | '/warranty/dashboard'
     | '/warranty/verify'
     | '/warranty/'
@@ -482,6 +494,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WarrantyDashboardRouteImport
       parentRoute: typeof WarrantyRoute
     }
+    '/warranty/cars': {
+      id: '/warranty/cars'
+      path: '/cars'
+      fullPath: '/warranty/cars'
+      preLoaderRoute: typeof WarrantyCarsRouteImport
+      parentRoute: typeof WarrantyRoute
+    }
     '/warranty/auth': {
       id: '/warranty/auth'
       path: '/auth'
@@ -564,6 +583,7 @@ interface WarrantyRouteChildren {
   WarrantyActivateRoute: typeof WarrantyActivateRoute
   WarrantyAdminRoute: typeof WarrantyAdminRoute
   WarrantyAuthRoute: typeof WarrantyAuthRoute
+  WarrantyCarsRoute: typeof WarrantyCarsRoute
   WarrantyDashboardRoute: typeof WarrantyDashboardRoute
   WarrantyVerifyRoute: typeof WarrantyVerifyRoute
   WarrantyIndexRoute: typeof WarrantyIndexRoute
@@ -574,6 +594,7 @@ const WarrantyRouteChildren: WarrantyRouteChildren = {
   WarrantyActivateRoute: WarrantyActivateRoute,
   WarrantyAdminRoute: WarrantyAdminRoute,
   WarrantyAuthRoute: WarrantyAuthRoute,
+  WarrantyCarsRoute: WarrantyCarsRoute,
   WarrantyDashboardRoute: WarrantyDashboardRoute,
   WarrantyVerifyRoute: WarrantyVerifyRoute,
   WarrantyIndexRoute: WarrantyIndexRoute,
