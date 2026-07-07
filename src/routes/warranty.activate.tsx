@@ -6,8 +6,8 @@ import { Loader2, PlusCircle, Car } from "lucide-react";
 
 export const Route = createFileRoute("/warranty/activate")({
   component: ActivatePage,
-  validateSearch: (s: Record<string, unknown>) => ({ car: typeof s.car === "string" ? s.car : undefined }),
 });
+
 
 type Brand = { id: string; name: string };
 type Film = { id: string; name: string; warranty_months: number; brand_id: string | null };
