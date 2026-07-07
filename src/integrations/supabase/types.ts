@@ -47,6 +47,63 @@ export type Database = {
         }
         Relationships: []
       }
+      cars: {
+        Row: {
+          brand_id: string | null
+          color: string | null
+          created_at: string
+          customer_id: string
+          id: string
+          model: string | null
+          notes: string | null
+          plate_number: string | null
+          updated_at: string
+          vin: string | null
+          year: number | null
+        }
+        Insert: {
+          brand_id?: string | null
+          color?: string | null
+          created_at?: string
+          customer_id: string
+          id?: string
+          model?: string | null
+          notes?: string | null
+          plate_number?: string | null
+          updated_at?: string
+          vin?: string | null
+          year?: number | null
+        }
+        Update: {
+          brand_id?: string | null
+          color?: string | null
+          created_at?: string
+          customer_id?: string
+          id?: string
+          model?: string | null
+          notes?: string | null
+          plate_number?: string | null
+          updated_at?: string
+          vin?: string | null
+          year?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cars_brand_id_fkey"
+            columns: ["brand_id"]
+            isOneToOne: false
+            referencedRelation: "warranty_brands"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cars_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       categories: {
         Row: {
           created_at: string
@@ -441,6 +498,7 @@ export type Database = {
           activation_date: string
           branch_id: string | null
           brand_id: string | null
+          car_id: string | null
           created_at: string
           customer_id: string
           employee_id: string | null
@@ -457,6 +515,7 @@ export type Database = {
           activation_date?: string
           branch_id?: string | null
           brand_id?: string | null
+          car_id?: string | null
           created_at?: string
           customer_id: string
           employee_id?: string | null
@@ -473,6 +532,7 @@ export type Database = {
           activation_date?: string
           branch_id?: string | null
           brand_id?: string | null
+          car_id?: string | null
           created_at?: string
           customer_id?: string
           employee_id?: string | null
@@ -498,6 +558,13 @@ export type Database = {
             columns: ["brand_id"]
             isOneToOne: false
             referencedRelation: "warranty_brands"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "warranties_car_id_fkey"
+            columns: ["car_id"]
+            isOneToOne: false
+            referencedRelation: "cars"
             referencedColumns: ["id"]
           },
           {
