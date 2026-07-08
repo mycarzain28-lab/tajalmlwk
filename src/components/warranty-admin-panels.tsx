@@ -370,3 +370,218 @@ export function WarrantySimpleCrud({ table, title, fields }: { table: SimpleTabl
     </div>
   );
 }
+
+/* ================= Users & Roles ================= */
+type AppRole = "admin" | "super_admin" | "manager" | "branch_staff" | "customer";
+const ROLE_LABEL: Record<AppRole, string> = {
+  super_admin: "مدير أعلى",
+  admin: "أدمن",
+  manager: "مدير",
+  branch_staff: "موظف فرع",
+  customer: "عميل",
+};
+const ROLE_COLOR: Record<AppRole, string> = {
+  super_admin: "bg-purple-100 text-purple-700 border-purple-300",
+  admin: "bg-red-100 text-red-700 border-red-300",
+  manager: "bg-blue-100 text-blue-700 border-blue-300",
+  branch_staff: "bg-emerald-100 text-emerald-700 border-emerald-300",
+  customer: "bg-slate-100 text-slate-600 border-slate-300",
+};
+
+type UserRow = {
+  id: string;
+  email: string;
+  created_at: string;
+  last_sign_in_at: string | null;
+  roles: { role: AppRole; branch_id: string | null }[];
+};
+
+export function WarrantyUsersTab() {
+  const list = useServerFn(adminListUsers);
+  const create = useServerFn(adminCreateStaff);
+  const grant = useServerFn(adminGrantRole);
+  const revoke = useServerFn(adminRevokeRole);
+  const del = useServerFn(adminDeleteUser);
+  const [rows, setRows] = useState<UserRow[] | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+  const [q, setQ] = useState("");
+  const [openNew, setOpenNew] = useState(false);
+  const [busy, setBusy] = useState(false);
+
+  const load = () => {
+    setRows(null);
+    list({ data: undefined as never })
+      .then((r) => setRows(r as UserRow[]))
+      .catch((e) => { setErr(e instanceof Error ? e.message : "تعذر التحميل"); setRows([]); });
+  };
+  useEffect(load, [list]);
+
+  const filtered = useMemo(() => {
+    if (!rows) return [];
+    const s = q.trim().toLowerCase();
+    return s ? rows.filter((u) => u.email.toLowerCase().includes(s)) : rows;
+  }, [rows, q]);
+
+  const doGrant = async (user_id: string, role: AppRole) => {
+    setBusy(true);
+    try { await grant({ data: { user_id, role } }); load(); }
+    catch (e) { alert(e instanceof Error ? e.message : "خطأ"); }
+    finally { setBusy(false); }
+  };
+  const doRevoke = async (user_id: string, role: AppRole) => {
+    if (!confirm(`إزالة دور "${ROLE_LABEL[role]}" من هذا المستخدم؟`)) return;
+    setBusy(true);
+    try { await revoke({ data: { user_id, role } }); load(); }
+    catch (e) { alert(e instanceof Error ? e.message : "خطأ"); }
+    finally { setBusy(false); }
+  };
+  const doDelete = async (user_id: string, email: string) => {
+    if (!confirm(`حذف الحساب ${email} نهائياً؟`)) return;
+    setBusy(true);
+    try { await del({ data: { user_id } }); load(); }
+    catch (e) { alert(e instanceof Error ? e.message : "خطأ"); }
+    finally { setBusy(false); }
+  };
+
+  if (rows === null) return <Loader />;
+
+  return (
+    <div className="space-y-4">
+      {err && <div className="p-3 rounded-lg bg-amber-50 text-amber-800 border border-amber-200 text-sm">{err}</div>}
+      <div className="flex items-center gap-2 flex-wrap">
+        <div className="relative flex-1 min-w-[200px]">
+          <Search className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="بحث بالبريد..."
+            className="w-full pr-9 pl-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm" />
+        </div>
+        <button onClick={() => setOpenNew(true)} className="inline-flex items-center gap-1 px-4 py-2 rounded-lg bg-amber-500 text-white hover:bg-amber-600 text-sm font-bold">
+          <UserPlus className="w-4 h-4" /> إضافة مستخدم
+        </button>
+      </div>
+
+      <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-slate-50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-300">
+              <tr>
+                <th className="p-3 text-right">البريد الإلكتروني</th>
+                <th className="p-3 text-right">الأدوار</th>
+                <th className="p-3 text-right">آخر دخول</th>
+                <th className="p-3 text-right">إجراءات</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((u) => {
+                const has = new Set(u.roles.map((r) => r.role));
+                return (
+                  <tr key={u.id} className="border-t border-slate-100 dark:border-slate-700">
+                    <td className="p-3 font-mono text-xs" dir="ltr">{u.email || u.id.slice(0, 8)}</td>
+                    <td className="p-3">
+                      <div className="flex flex-wrap gap-1">
+                        {u.roles.length === 0 && <span className="text-xs text-slate-400">— بدون دور</span>}
+                        {u.roles.map((r) => (
+                          <button key={r.role} onClick={() => doRevoke(u.id, r.role)} disabled={busy}
+                            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold border ${ROLE_COLOR[r.role]} hover:opacity-70`}
+                            title="اضغط للإزالة">
+                            {ROLE_LABEL[r.role]} <X className="w-3 h-3" />
+                          </button>
+                        ))}
+                      </div>
+                    </td>
+                    <td className="p-3 text-xs text-slate-500">
+                      {u.last_sign_in_at ? new Date(u.last_sign_in_at).toLocaleDateString("ar") : "—"}
+                    </td>
+                    <td className="p-3">
+                      <div className="flex items-center gap-1 flex-wrap">
+                        <select
+                          disabled={busy}
+                          onChange={(e) => { if (e.target.value) { doGrant(u.id, e.target.value as AppRole); e.target.value = ""; } }}
+                          className="text-xs border border-slate-200 dark:border-slate-700 rounded px-2 py-1 bg-white dark:bg-slate-800"
+                          defaultValue=""
+                        >
+                          <option value="">+ منح دور</option>
+                          {(["super_admin", "admin", "manager", "branch_staff"] as AppRole[])
+                            .filter((r) => !has.has(r))
+                            .map((r) => <option key={r} value={r}>{ROLE_LABEL[r]}</option>)}
+                        </select>
+                        <button onClick={() => doDelete(u.id, u.email)} disabled={busy}
+                          className="p-1.5 rounded hover:bg-red-50 text-red-600" title="حذف الحساب">
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+              {filtered.length === 0 && <tr><td colSpan={4} className="p-8 text-center text-slate-500">لا يوجد مستخدمون</td></tr>}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {openNew && (
+        <NewUserModal
+          onClose={() => setOpenNew(false)}
+          onCreate={async (email, password, role) => {
+            await create({ data: { email, password, role } });
+            setOpenNew(false);
+            load();
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+function NewUserModal({ onClose, onCreate }: { onClose: () => void; onCreate: (email: string, password: string, role: AppRole) => Promise<void> }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState<AppRole>("branch_staff");
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true); setErr(null);
+    try { await onCreate(email.trim(), password, role); }
+    catch (e) { setErr(e instanceof Error ? e.message : "خطأ"); }
+    finally { setBusy(false); }
+  };
+  return (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <form onClick={(e) => e.stopPropagation()} onSubmit={submit}
+        className="bg-white dark:bg-slate-800 rounded-2xl p-6 w-full max-w-md space-y-3">
+        <div className="flex items-center justify-between">
+          <h3 className="font-black text-lg flex items-center gap-2"><Shield className="w-5 h-5 text-amber-500" /> مستخدم جديد</h3>
+          <button type="button" onClick={onClose} className="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded"><X className="w-4 h-4" /></button>
+        </div>
+        <label className="block text-sm">
+          <span className="text-slate-600 dark:text-slate-300">البريد الإلكتروني</span>
+          <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+            className="mt-1 w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900" dir="ltr" />
+        </label>
+        <label className="block text-sm">
+          <span className="text-slate-600 dark:text-slate-300">كلمة المرور (6+ أحرف)</span>
+          <input type="text" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)}
+            className="mt-1 w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900" dir="ltr" />
+        </label>
+        <label className="block text-sm">
+          <span className="text-slate-600 dark:text-slate-300">الدور</span>
+          <select value={role} onChange={(e) => setRole(e.target.value as AppRole)}
+            className="mt-1 w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+            <option value="super_admin">مدير أعلى (كل الصلاحيات)</option>
+            <option value="admin">أدمن</option>
+            <option value="manager">مدير</option>
+            <option value="branch_staff">موظف فرع</option>
+          </select>
+        </label>
+        {err && <div className="p-2 rounded bg-red-50 text-red-700 text-sm border border-red-200">{err}</div>}
+        <div className="flex gap-2 pt-2">
+          <button type="submit" disabled={busy} className="flex-1 py-2 rounded-lg bg-amber-500 text-white font-bold hover:bg-amber-600 disabled:opacity-60">
+            {busy ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "إنشاء"}
+          </button>
+          <button type="button" onClick={onClose} className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700">إلغاء</button>
+        </div>
+      </form>
+    </div>
+  );
+}
