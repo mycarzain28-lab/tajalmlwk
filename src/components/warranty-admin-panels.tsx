@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { formatDateAr, statusLabel, statusColor, computeStatus, type WarrantyStatus } from "@/lib/warranty-utils";
-import { Loader2, Search, Trash2, Ban, RefreshCw, CheckCircle2 } from "lucide-react";
+import { Loader2, Search, Trash2, Ban, RefreshCw, CheckCircle2, UserPlus, Shield, X } from "lucide-react";
 import {
   adminListWarranties,
   adminListCustomers,
@@ -9,6 +9,9 @@ import {
   adminListSimple,
   adminMutate,
 } from "@/lib/warranty-admin.functions";
+import {
+  adminListUsers, adminCreateStaff, adminGrantRole, adminRevokeRole, adminDeleteUser,
+} from "@/lib/warranty-users.functions";
 
 function Loader() {
   return <div className="text-center py-10"><Loader2 className="w-6 h-6 animate-spin mx-auto text-amber-500" /></div>;
