@@ -136,6 +136,19 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
         { id: "w-users", label: "المستخدمون والصلاحيات" },
       ],
     },
+    {
+      title: "منشئ الموقع",
+      tabs: [
+        { id: "b-pages", label: "الصفحات" },
+        { id: "b-sections", label: "الأقسام" },
+        { id: "b-menus", label: "القوائم" },
+        { id: "b-theme", label: "الثيم" },
+        { id: "b-media", label: "الوسائط" },
+        { id: "b-forms", label: "النماذج" },
+        { id: "b-submissions", label: "الردود" },
+        { id: "b-settings", label: "الإعدادات" },
+      ],
+    },
   ];
 
   return (
