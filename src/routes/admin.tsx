@@ -15,6 +15,10 @@ import {
 import {
   WarrantyOverview, WarrantiesTab, WarrantyCustomersTab, WarrantySimpleCrud, WarrantyUsersTab,
 } from "@/components/warranty-admin-panels";
+import {
+  BuilderPagesPanel, BuilderSectionsPanel, BuilderMenusPanel, BuilderThemePanel,
+  BuilderMediaPanel, BuilderFormsPanel, BuilderSubmissionsPanel, BuilderSettingsPanel,
+} from "@/components/builder-admin-panels";
 
 // Session token issued by the server-side `adminLogin` function. The actual
 // admin password is never stored in the client bundle or in browser storage.
