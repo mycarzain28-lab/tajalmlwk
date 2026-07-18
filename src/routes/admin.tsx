@@ -15,6 +15,10 @@ import {
 import {
   WarrantyOverview, WarrantiesTab, WarrantyCustomersTab, WarrantySimpleCrud, WarrantyUsersTab,
 } from "@/components/warranty-admin-panels";
+import {
+  BuilderPagesPanel, BuilderSectionsPanel, BuilderMenusPanel, BuilderThemePanel,
+  BuilderMediaPanel, BuilderFormsPanel, BuilderSubmissionsPanel, BuilderSettingsPanel,
+} from "@/components/builder-admin-panels";
 
 // Session token issued by the server-side `adminLogin` function. The actual
 // admin password is never stored in the client bundle or in browser storage.
@@ -27,7 +31,8 @@ export const Route = createFileRoute("/admin")({
 
 type Tab =
   | "orders" | "products" | "categories" | "services" | "packages" | "wallets" | "content" | "reviews"
-  | "w-overview" | "w-warranties" | "w-customers" | "w-brands" | "w-films" | "w-branches" | "w-users";
+  | "w-overview" | "w-warranties" | "w-customers" | "w-brands" | "w-films" | "w-branches" | "w-users"
+  | "b-pages" | "b-sections" | "b-menus" | "b-theme" | "b-media" | "b-forms" | "b-submissions" | "b-settings";
 
 function AdminPage() {
   const login = useServerFn(adminLogin);
@@ -131,6 +136,19 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
         { id: "w-users", label: "المستخدمون والصلاحيات" },
       ],
     },
+    {
+      title: "منشئ الموقع",
+      tabs: [
+        { id: "b-pages", label: "الصفحات" },
+        { id: "b-sections", label: "الأقسام" },
+        { id: "b-menus", label: "القوائم" },
+        { id: "b-theme", label: "الثيم" },
+        { id: "b-media", label: "الوسائط" },
+        { id: "b-forms", label: "النماذج" },
+        { id: "b-submissions", label: "الردود" },
+        { id: "b-settings", label: "الإعدادات" },
+      ],
+    },
   ];
 
   return (
@@ -181,6 +199,14 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
           {tab === "w-films" && <WarrantySimpleCrud table="film_types" title="أنواع اللاصق" fields={[{ k: "name", l: "الاسم" }, { k: "warranty_months", l: "مدة الضمان (شهر)", type: "number" }, { k: "description", l: "الوصف" }]} />}
           {tab === "w-branches" && <WarrantySimpleCrud table="branches" title="الفروع" fields={[{ k: "name", l: "الاسم" }, { k: "address", l: "العنوان" }, { k: "phone", l: "الجوال" }]} />}
           {tab === "w-users" && <WarrantyUsersTab />}
+          {tab === "b-pages" && <BuilderPagesPanel />}
+          {tab === "b-sections" && <BuilderSectionsPanel />}
+          {tab === "b-menus" && <BuilderMenusPanel />}
+          {tab === "b-theme" && <BuilderThemePanel />}
+          {tab === "b-media" && <BuilderMediaPanel />}
+          {tab === "b-forms" && <BuilderFormsPanel />}
+          {tab === "b-submissions" && <BuilderSubmissionsPanel />}
+          {tab === "b-settings" && <BuilderSettingsPanel />}
         </div>
       </div>
     </Shell>
