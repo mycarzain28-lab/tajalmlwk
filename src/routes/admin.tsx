@@ -31,7 +31,8 @@ export const Route = createFileRoute("/admin")({
 
 type Tab =
   | "orders" | "products" | "categories" | "services" | "packages" | "wallets" | "content" | "reviews"
-  | "w-overview" | "w-warranties" | "w-customers" | "w-brands" | "w-films" | "w-branches" | "w-users";
+  | "w-overview" | "w-warranties" | "w-customers" | "w-brands" | "w-films" | "w-branches" | "w-users"
+  | "b-pages" | "b-sections" | "b-menus" | "b-theme" | "b-media" | "b-forms" | "b-submissions" | "b-settings";
 
 function AdminPage() {
   const login = useServerFn(adminLogin);
