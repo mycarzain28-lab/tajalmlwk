@@ -613,6 +613,312 @@ export type Database = {
         }
         Relationships: []
       }
+      website_form_submissions: {
+        Row: {
+          created_at: string
+          data: Json
+          form_id: string
+          id: string
+          ip: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          data?: Json
+          form_id: string
+          id?: string
+          ip?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          data?: Json
+          form_id?: string
+          id?: string
+          ip?: string | null
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "website_form_submissions_form_id_fkey"
+            columns: ["form_id"]
+            isOneToOne: false
+            referencedRelation: "website_forms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      website_forms: {
+        Row: {
+          created_at: string
+          fields: Json
+          id: string
+          is_active: boolean
+          name: string
+          notify_email: string | null
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          fields?: Json
+          id?: string
+          is_active?: boolean
+          name: string
+          notify_email?: string | null
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          fields?: Json
+          id?: string
+          is_active?: boolean
+          name?: string
+          notify_email?: string | null
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      website_media: {
+        Row: {
+          alt: string | null
+          created_at: string
+          folder: string | null
+          height: number | null
+          id: string
+          size: number | null
+          type: string
+          uploaded_by: string | null
+          url: string
+          width: number | null
+        }
+        Insert: {
+          alt?: string | null
+          created_at?: string
+          folder?: string | null
+          height?: number | null
+          id?: string
+          size?: number | null
+          type?: string
+          uploaded_by?: string | null
+          url: string
+          width?: number | null
+        }
+        Update: {
+          alt?: string | null
+          created_at?: string
+          folder?: string | null
+          height?: number | null
+          id?: string
+          size?: number | null
+          type?: string
+          uploaded_by?: string | null
+          url?: string
+          width?: number | null
+        }
+        Relationships: []
+      }
+      website_menus: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          label: string
+          location: string
+          parent_id: string | null
+          sort_order: number
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          label: string
+          location: string
+          parent_id?: string | null
+          sort_order?: number
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          label?: string
+          location?: string
+          parent_id?: string | null
+          sort_order?: number
+          updated_at?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "website_menus_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "website_menus"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      website_page_revisions: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          page_id: string
+          snapshot: Json
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          page_id: string
+          snapshot: Json
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          page_id?: string
+          snapshot?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "website_page_revisions_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "website_pages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      website_pages: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          is_home: boolean
+          layout: Json
+          seo: Json
+          slug: string
+          sort_order: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_home?: boolean
+          layout?: Json
+          seo?: Json
+          slug: string
+          sort_order?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_home?: boolean
+          layout?: Json
+          seo?: Json
+          slug?: string
+          sort_order?: number
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      website_sections: {
+        Row: {
+          content: Json
+          created_at: string
+          id: string
+          is_global: boolean
+          name: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          content?: Json
+          created_at?: string
+          id?: string
+          is_global?: boolean
+          name: string
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          content?: Json
+          created_at?: string
+          id?: string
+          is_global?: boolean
+          name?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      website_settings: {
+        Row: {
+          is_public: boolean
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          is_public?: boolean
+          key: string
+          updated_at?: string
+          value?: Json
+        }
+        Update: {
+          is_public?: boolean
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      website_theme: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          name: string
+          tokens: Json
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          tokens?: Json
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          tokens?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
