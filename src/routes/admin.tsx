@@ -199,6 +199,14 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
           {tab === "w-films" && <WarrantySimpleCrud table="film_types" title="أنواع اللاصق" fields={[{ k: "name", l: "الاسم" }, { k: "warranty_months", l: "مدة الضمان (شهر)", type: "number" }, { k: "description", l: "الوصف" }]} />}
           {tab === "w-branches" && <WarrantySimpleCrud table="branches" title="الفروع" fields={[{ k: "name", l: "الاسم" }, { k: "address", l: "العنوان" }, { k: "phone", l: "الجوال" }]} />}
           {tab === "w-users" && <WarrantyUsersTab />}
+          {tab === "b-pages" && <BuilderPagesPanel />}
+          {tab === "b-sections" && <BuilderSectionsPanel />}
+          {tab === "b-menus" && <BuilderMenusPanel />}
+          {tab === "b-theme" && <BuilderThemePanel />}
+          {tab === "b-media" && <BuilderMediaPanel />}
+          {tab === "b-forms" && <BuilderFormsPanel />}
+          {tab === "b-submissions" && <BuilderSubmissionsPanel />}
+          {tab === "b-settings" && <BuilderSettingsPanel />}
         </div>
       </div>
     </Shell>
