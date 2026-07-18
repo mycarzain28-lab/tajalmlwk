@@ -136,7 +136,7 @@ export function BuilderSectionsPanel() {
     let content: unknown = {};
     try { content = editing.contentText ? JSON.parse(editing.contentText) : {}; }
     catch { return alert("محتوى JSON غير صالح"); }
-    const payload = { name: editing.name, type: editing.type, is_global: !!editing.is_global, content };
+    const payload = { name: editing.name, type: editing.type, is_global: !!editing.is_global, content: content as never };
     const { error } = editing.id
       ? await supabase.from("website_sections").update(payload).eq("id", editing.id)
       : await supabase.from("website_sections").insert(payload);
@@ -396,7 +396,7 @@ export function BuilderFormsPanel() {
     if (!editing?.name || !editing.slug) return alert("الاسم والرابط مطلوبان");
     let fields: unknown = [];
     try { fields = editing.fieldsText ? JSON.parse(editing.fieldsText) : []; } catch { return alert("JSON غير صالح"); }
-    const payload = { name: editing.name, slug: editing.slug, notify_email: editing.notify_email || null, is_active: editing.is_active !== false, fields };
+    const payload = { name: editing.name, slug: editing.slug, notify_email: editing.notify_email || null, is_active: editing.is_active !== false, fields: fields as never };
     const { error } = editing.id
       ? await supabase.from("website_forms").update(payload).eq("id", editing.id)
       : await supabase.from("website_forms").insert(payload);
@@ -496,7 +496,7 @@ export function BuilderSettingsPanel() {
     let value: unknown;
     try { value = editing.valueText ? JSON.parse(editing.valueText) : null; }
     catch { return alert("JSON غير صالح"); }
-    const payload = { key: editing.key, value, is_public: editing.is_public !== false };
+    const payload = { key: editing.key, value: value as never, is_public: editing.is_public !== false };
     const { error } = await supabase.from("website_settings").upsert(payload);
     if (error) return alert(error.message);
     setEditing(null); load();
